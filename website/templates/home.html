@@ -10,6 +10,9 @@
             <a class="nav-link" href="/add" role="button">Add book</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/edit" role="button">Edit book</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/googlebooks">Google Books</a>
           </li>
           <li class="nav-item">
@@ -51,7 +54,7 @@
          <td>{{ book.language }}</td>
          <td>
            <div class="d-grid col-6 mx-auto">
-            <button class="btn btn-success btn-sm" type="button">Edit</button>
+            <a class="btn btn-success btn-sm" type="button" href="/edit?ISBN={{book.isbn}}">Edit</a>
             <button class="btn btn-danger btn-sm" type="button" onClick="deletebook('{{book.isbn}}')">Delete</button>
             </div>
           </td>

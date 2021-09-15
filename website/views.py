@@ -122,5 +122,34 @@ def deletebook():
     if book:
         db.session.delete(book)
         db.session.commit()
-
+        flash(f'book deleted (ISBN:{isbn})')
     return jsonify({})
+
+@views.route('/edit', methods = ['GET', 'POST'])
+def edit():
+    if request.method == 'POST':  
+        n_title = request.form.get('title')
+        n_authors = request.form.get('authors')
+        n_published = request.form.get('published')
+        isbn = request.form.get('ISBN').strip()
+        n_pages = request.form.get('pages')
+        n_language = request.form.get('language')
+        n_thumbnail = request.form.get('thumbnail')
+        book = Book.query.get(isbn)
+        if book:
+            book = Book.query.get(isbn)
+            book.title = n_title
+            book.authors = n_authors
+            book.published = n_published
+            book.pages = n_pages
+            book.language = n_language
+            book.thumbnail = n_thumbnail
+            db.session.commit()
+            flash(f'book updated (ISBN:{isbn})')
+        return home()
+    else:
+        book = None
+        print(request.args)
+        if request.args:
+            book = Book.query.get(request.args["ISBN"])
+        return render_template('edit.html', book = book)

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Edit book{% endblock %}
 {% block nav %}
     <div class="container">
         <ul class="nav nav-tabs">
@@ -7,10 +7,10 @@
             <a class="nav-link" href="/" role="button">Book list</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/add" role="button">Add book</a>
+            <a class="nav-link" href="/add" role="button">Add book</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/edit" role="button">Edit book</a>
+            <a class="nav-link active" href="/edit" role="button">Edit book</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/googlebooks">Google Books</a>
@@ -25,7 +25,7 @@
 {% block content %}
 
 
-<h3 align="center">Add book</h3>
+<h3 align="center">Edit book</h3>
 
 <form method="POST">
   <div class="form-group">
@@ -38,6 +38,7 @@
               id="title"
               name="title"
               placeholder="Title"
+              value="{{book.title}}"
             />
         </div>
         <div class="col">
@@ -48,6 +49,7 @@
               id="authors"
               name="authors"
               placeholder="Authors"
+              value="{{book.authors}}"
             />
         </div>
         <div class="col">
@@ -58,6 +60,7 @@
                   id="published"
                   name="published"
                   placeholder="Date YYYY-MM-DD"
+                  value="{{book.published}}"
                 />
             </div>
     </div>
@@ -68,7 +71,8 @@
                   type="text"
                   class="form-control"
                   id="isbn"
-                  name="isbn"
+                  name="ISBN"
+                  value="{{request.args['ISBN']}}"
                   placeholder="ISBN "
                 />
             </div>
@@ -80,6 +84,7 @@
                   id="pages"
                   name="pages"
                   placeholder="Number of pages"
+                  value="{{book.pages}}"
                 />
             </div>
            <div class="col">
@@ -90,6 +95,7 @@
                   id="language"
                   name="language"
                   placeholder="Language"
+                  value="{{book.language}}"
                 />
             </div>
         </div>
@@ -100,9 +106,10 @@
                   id="thumbnail"
                   name="thumbnail"
                   placeholder="URL"
+                  value="{{book.thumbnail}}"
                 />
   </div>
   <br />
-  <button type="submit" class="btn btn-primary">Add</button>
+  <button type="submit" class="btn btn-primary">Update</button>
 </form>
 {% endblock %}
