@@ -95,7 +95,7 @@ def add():
                             language=language)
             db.session.add(new_book)
             db.session.commit()
-            flash(f'Added {new_book.title}')
+            flash(f'book added (ISBN:{new_book.isbn})')
             books = Book.query.all()
             return render_template("home.html", books=books, books_no=len(books))
     return render_template('add.html')
